@@ -44,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                <a class="navbar-brand" href="index.html">Be successful!</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -76,9 +76,9 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>Clean Blog</h1>
+                        <h1>Hai's Blog</h1>
                         <hr class="small">
-                        <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
+                        <span class="subheading">change yourself</span>
                     </div>
                 </div>
             </div>
@@ -89,7 +89,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-preview">
+                <div class="post-preview" id="4">
                     <a href="post.html">
                         <h2 class="post-title">
                             Man must explore, and this is exploration at its greatest
@@ -100,8 +100,8 @@
                     </a>
                     <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 24, 2014</p>
                 </div>
-                <hr>
-                <div class="post-preview">
+                <hr id="hr-4">
+                <div class="post-preview" id="3">
                     <a href="post.html">
                         <h2 class="post-title">
                             I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
@@ -109,8 +109,8 @@
                     </a>
                     <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 18, 2014</p>
                 </div>
-                <hr>
-                <div class="post-preview">
+                <hr id="hr-3">
+                <div class="post-preview" id="2">
                     <a href="post.html">
                         <h2 class="post-title">
                             Science has not yet mastered prophecy
@@ -121,8 +121,8 @@
                     </a>
                     <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</p>
                 </div>
-                <hr>
-                <div class="post-preview">
+                <hr id="hr-2">
+                <div class="post-preview" id="1">
                     <a href="post.html">
                         <h2 class="post-title">
                             Failure is not an option
@@ -133,10 +133,12 @@
                     </a>
                     <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>
                 </div>
-                <hr>
+                <hr id="hr-1">
                 <!-- Pager -->
                 <ul class="pager">
-                    <li class="next">
+                    <li class="next" onclick="nextPage();">
+                        <input type="hidden" id="start-position" name="start-position">
+                        <input type="hidden" id="end-position" name="end-position">
                         <a href="#">Older Posts &rarr;</a>
                     </li>
                 </ul>
@@ -191,6 +193,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>
+
+    <script src="js/pagination.js"></script>
 
 </body>
 
