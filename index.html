@@ -136,10 +136,13 @@
                 <hr id="hr-1">
                 <!-- Pager -->
                 <ul class="pager">
+                    <input type="hidden" id="start-position" name="start-position">
+                    <input type="hidden" id="end-position" name="end-position">
                     <li class="next">
-                        <input type="hidden" id="start-position" name="start-position">
-                        <input type="hidden" id="end-position" name="end-position">
                         <a id="next-page" href="javascript:void(0)" onclick="nextPage();">Older Posts &rarr;</a>
+                    </li>
+                    <li class="previous">
+                        <a id="previous-page" href="javascript:void(0)" onclick="previousPage();">&larr; Older Posts</a>
                     </li>
                 </ul>
             </div>

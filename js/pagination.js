@@ -1,4 +1,4 @@
-var perPage = 2;
+var perPage = 1;
 var totalPosts = $('.post-preview').length;
 
 $(function(){
@@ -10,6 +10,12 @@ $(function(){
 
 function loadPage() {
 	var startPosition = $('#start-position').val();
+	if (startPosition - perPage > 1) {
+		$('#end-position').val(startPosition - perPage);
+	} else {
+		$('#end-position').val(1);
+	}
+	var endPosition = $('#end-position').val();
 	$('.post-preview').each(function() {
 		if (this.id <= startPosition && this.id > startPosition - perPage){
 			$(this).removeClass('hidden');
@@ -20,6 +26,15 @@ function loadPage() {
 				$('#hr-' + this.id).addClass('hidden');
 			}
 		}
+		// if (this.id < totalPosts - perPage){
+		// 	$(this).removeClass('hidden');
+		// 	$('#hr-' + this.id).removeClass('hidden');
+		// } else {
+		// 	if (!$(this).hasClass('hidden')) {
+		// 		$(this).addClass('hidden');
+		// 		$('#hr-' + this.id).addClass('hidden');
+		// 	}
+		// }
 	});
 }
 
