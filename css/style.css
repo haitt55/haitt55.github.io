@@ -1,0 +1,24 @@
+.code-block {
+    overflow-x: auto;
+    display: block;
+    box-shadow: none;
+}
+
+.code-block code {
+    overflow-wrap: normal;
+    white-space: pre;
+}
+
+code {
+    font-family: monospace,monospace;
+    font-size: 15px;
+    color: royalblue !important;
+}
+
+.pre-code-block {
+    border: 0;
+}
+
+pre code {
+    font-size: 15px !important;
+}
