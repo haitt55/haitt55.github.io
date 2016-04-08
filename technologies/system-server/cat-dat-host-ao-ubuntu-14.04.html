@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="cat-dat-host-ao-ubuntu-14.04">
+    <meta name="author" content="HaiTT">
+
+    <title>Cài đặt host ảo</title>
+
+    <!-- Github page CSS-->
+    <link href="../../css/github-light.css" rel="stylesheet">
+    <link href="../../css/stylesheet.css" rel="stylesheet">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../../css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- My Style -->
+    <link href="../../css/style.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../index.html">Be successful!</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="../../index.html">Home</a>
+                </li>
+                <li>
+                    <a href="../../about.html">About</a>
+                </li>
+                <li>
+                    <a href="../../contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('../../img/post-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h2>Cách cài đặt Apache Virtual Hosts trên Ubuntu 14.04 LTS (tới 15.10)</h2>
+                    <span class="meta">Posted by <a href="#">HaiTT</a> on Apr 5, 2016</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+                <h3 class="section-heading">Giới thiệu</h3>
+
+                <p>Apache được sử dụng rộng rãi trên các máy chủ web trên thế giới. Có khoảng hơn 50% website hiện có trên internet đang sử dụng vì nó vô cùng mạnh mẽ và linh hoạt.</p>
+
+                <p>Apache có thể chia các chức năng và thành phần của nó thành các đơn vị riêng lẻ. Mỗi đơn vị này có thể tùy chỉnh và cấu hình độc lập.
+                Đơn vị cơ bản này mô tả một trang với tên miền riêng được gọi là một <strong>virtual host</strong></p>
+
+                <p>Quản trị viên có thể sử dụng một server để lưu trữ nhiều tên miền hay trang web của một giao diện duy nhất hay IP bằng cách sử dụng một cơ chế phù hợp.
+                Rất thích hợp cho ai muốn lưu trữ nhiều trang web trên một server duy nhất.</p>
+
+                <p>Mỗi tên miền được cấu hình sẽ trỏ trực tiếp tới thư mục chứa thông tin của trang web tương ứng.
+                Chương trình xử lí này có thể mở rộng tùy ý dựa trên khả năng của server.</p>
+
+                <p>Ở đây, mình sẽ hướng dẫn các bạn cách cài đặt hosts ảo Apache trên Ubuntu 14.04 LTS (đến phiên bản 15.10).
+                Bạn sẽ biết cách cung cấp nội dung khác nhau dựa trên các yêu cầu truy cập khác nhau.</p>
+
+                <h3 class="section-heading">Điều kiện</h3>
+
+                <p>Hãy chắc chắn rằng Apache đã được cài đặt. Nếu chưa, bạn có thể cài đặt Apache trên server của bạn thông qua lệnh:</p>
+
+                <code>sudo apt-get update</code><br>
+                <code>sudo apt-get install apache2</code>
+
+                <p>Mình sẽ tạo hai host ảo cho <strong>example.com</strong> và <strong>test.com</strong>.
+                    Bạn cũng có thể dùng bất cứ tên miền nào bạn thích.</p>
+
+                <p>Nếu bạn chưa sở hữu một tên miền chính thức nào thì có thể sử dụng tên miền giả.
+                    Tên miền giả cho phép bạn test trên chính máy tính của mình, tuy nhiên nó chỉ hiện hữu trên máy bạn mà thôi.</p>
+
+                <h3 class="section-heading">Bước 1 - Tạo cấu trúc thư mục</h3>
+
+                <p>Đầu tiên chúng ta sẽ tạo một cấu trúc thư mục để lưu trữ dữ liệu của trang web. Tạo các thư mục con trong <strong>thư mục gốc</strong>
+                    <strong>/var/www</strong>(thư mục ở cấp độ cao nhất mà Apache trỏ tới để lấy nội dung). Các thư mục con này sẽ được sử dụng cho các host ảo mà chúng ta sẽ tạo.</p>
+
+                <p>Trong mỗi thư mục con này, chúng ta sẽ tạo một thư mục <strong>public_html</strong>. Thư mục này sẽ chứa các file thực sự.</p>
+
+                <p>Trong bài này, chúng ta sẽ tạo các thư mục tương ứng với <strong>example.com</strong> và <strong>test.com</strong> như sau:</p>
+
+                <code>sudo mkdir -p /var/www/<strong>example.com</strong>/public_html</code><br>
+                <code>sudo mkdir -p /var/www/<strong>test.com</strong>/public_html</code>
+
+                <p>Sau đó, để chắc chắn rằng tất cả các file, thư mục trong thư mục web của đều có quyền đọc, chúng ta dùng lệnh:</p>
+
+                <code>sudo chmod -R 755 /var/www</code>
+
+                <h3 class="section-heading">Bước 2 - Tạo các trang thử nghiệm với mỗi host ảo</h3>
+
+                <p>Bây giờ chúng ta tạo một file <strong>index.html</strong> cho mỗi trang.</p>
+
+                <p>Với <strong>example.com</strong>, chúng ta có thể mở file <strong>index.html</strong> bằng cách gõ:</p>
+
+                <code>nano /var/www/example.com/public_html/index.html</code>
+
+                <p>Trong file này, tạo một nội dung HTML cơ bản biểu thị trang mà nó được kết nối tới. Ví dụ:</p>
+
+                <pre class="pre-code-block"><code>
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Welcome to Example.com!&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h2&gt;Success!  The example.com virtual host is working!&lt;/h2&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                </code></pre>
+
+                <p>Chúng ta có thể copy file này để sử dụng cho trang thứ 2 bằng cách gõ:</p>
+
+                <span class="code-block"><code>cp /var/www/example.com/public_html/index.html /var/www/test.com/public_html/index.html</code></span>
+
+                <p>Mở file vừa được copy và sửa lại một chút:</p>
+
+                <code>nano /var/www/test.com/public_html/index.html</code>
+
+                <pre class="pre-code-block"><code>
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Welcome to Test.com!&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h2&gt;Success!  The test.com virtual host is working!&lt;/h2&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                </code></pre>
+
+                <h3 class="section-heading">Bước 3 - Tạo các file cấu hình virtual host</h3>
+
+                <p>Các file cấu hình virtual host là các file xác định các cấu hình host ảo của chúng ta và quy định cách mà Apache phản hồi
+                với các yêu cầu tên miền khác nhau.</p>
+
+                <p>Apache có một file cấu hình mặc định là <strong>000.default.conf</strong>. Chúng ta sẽ copy file này để tạo một file cấu hình cho mỗi tên miền.</p>
+
+                <p>Chúng ta sẽ bắt đầu với một tên miền, cấu hình nó, sau đó sẽ làm tương tự với tên miền thứ hai. Ubuntu yêu cầu các file cấu hình phải có đuôi <strong>.conf</strong></p>
+
+                <h4 class="section-heading">Tạo file cấu hình đầu tiên</h4>
+
+                <p>Copy file cho domain đầu tiên:</p>
+
+                <span class="code-block"><code>sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/example.com.conf</code></span>
+
+                <p>Mở file vừa copy với quyền root:</p>
+
+                <code>sudo nano /etc/apache2/sites-available/example.com.conf</code>
+
+                <p>File này sẽ như sau (mình đã bỏ các dòng comment cho dễ đọc):</p>
+
+                <pre class="pre-code-block"><code>
+&lt;VirtualHost *:80&gt;
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+                </code></pre>
+
+                <p>Chúng ta sẽ đặt lại các giá trị và thêm vào một số chỉ thị thêm. Phần host ảo này sẽ xử lí bất kì yêu cầu nào trên công 80 (cổng HTTP mặc định).</p>
+
+                <p>Đầu tiên, chúng ta cần đổi <strong>ServerAdmin</strong> thành email mà trang admin có thể nhận email thông qua nó.</p>
+
+                <code>ServerAdmin admin@example.com</code>
+
+                <p>Sau đó thêm hai chỉ thị. Đầu tiên là ServerName, đặt dựa theo tên domain mà host ảo kết nối tới. Thứ hai là <strong>ServerAlias</strong>,
+                định nghĩa tên miền dài hơn với <strong>www:</strong></p>
+
+                <code>ServerName example.com</code><br>
+                <code>ServerAlias www.example.com</code>
+
+                <p>Đặt thư mục gốc <strong>DocumentRoot</strong> trỏ tới thư mục mà chúng ta đã tạo cho tên miền này:</p>
+
+                <code>DocumentRoot /var/www/example.com/public_html</code>
+
+                <p>Cuối cùng, file cấu hình sẽ như sau:</p>
+
+                <pre class="pre-code-block"><code>
+&lt;VirtualHost *:80&gt;
+    ServerAdmin admin@example.com
+    ServerName example.com
+    ServerAlias www.example.com
+    DocumentRoot /var/www/example.com/public_html
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+                </code></pre>
+
+                <p>Lưu lại và đóng file.</p>
+
+                <h4 class="section-heading">Tạo file cấu hình thứ 2</h4>
+
+                <p>Bây giờ chúng ta đã có một file cấu hình đã được tạo, ta chỉ cần tạo file cấu hình thứ 2 bằng việc copy file thứ nhất và chỉnh sửa lại nó.</p>
+
+                <p>Copy file đó:</p>
+
+                <span class="code-block"><code>sudo cp /etc/apache2/sites-available/example.com.conf /etc/apache2/sites-available/test.com.conf</code></span>
+
+                <p>Mở file vừa copy được với quyền root:</p>
+
+                <code>sudo nano /etc/apache2/sites-available/test.com.conf</code>
+
+                <p>Sau đó chỉnh sửa file này giống như file cấu hình trước đó. File này sẽ là:</p>
+
+                <pre class="pre-code-block"><code>
+&lt;VirtualHost *:80&gt;
+ServerAdmin admin@test.com
+ServerName test.com
+ServerAlias www.test.com
+DocumentRoot /var/www/test.com/public_html
+ErrorLog ${APACHE_LOG_DIR}/error.log
+CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+                </code></pre>
+
+                <p>Lưu lại và đóng file.</p>
+
+                <h3 class="section-heading">Bước 4 - Kích hoạt file cấu hình</h3>
+
+                <p>Sau khi đã tạo file cấu hình cho các host ảo, chúng ta cần kích hoạt chúng. Apache có sẵn một số công cụ cho phép chúng ta làm việc này.</p>
+
+                <p>Chúng ta có thể sử dụng <strong>a2ensite</strong> để kích hoạt từng trang như sau:</p>
+
+                <code>sudo a2ensite example.com.conf</code><br>
+                <code>sudo a2ensite test.com.conf</code>
+
+                <p>Sau đó chúng ta cần khởi động lại Apache để nhận các thay đổi này:</p>
+
+                <code>sudo service apache2 restart</code>
+
+                <h3 class="section-heading">Bước 5 - Thiết lập file hosts</h3>
+
+                <p>Nếu các bạn chưa bao giờ sử dụng một tên miền thực sự thì thay vào đó bạn phải dùng các domain giả.
+                    Ít nhất thì bạn có thể kiểm tra sự hoạt động của các host ảo bằng cách tạm thời sử đổi file <strong>hosts</strong> trên chính máy tính của mình.</p>
+
+                <p>Việc này sẽ ngăn chặn bất kì yêu cầu nào tới tên miền mà bạn đã cấu hình và trỏ chúng tới VPS server của bạn,
+                giống cách một hệ thống DNS làm việc nếu bạn có tên miền thực sự. Việc này chỉ hữu dụng cho mục đích test mà thôi.</p>
+
+                <p>Hãy chắc chắn rằng bước này chỉ được thực hiện trên máy tính của bạn chứ không phải trên VPS server.</p>
+
+                <p>Nếu máy tính của bạn sử dụng Mac hoặc Linux bạn có thể sửa file hosts bằng cách:</p>
+
+                <code>sudo nano /etc/hosts</code>
+
+                <p>nếu bạn sử dụng windows, bạn có thể <a href="https://support.microsoft.com/en-us/kb/923947">tìm cách sửa file host ở đây</a></p>
+
+                <p>Bạn cũng cần địa chỉ IP của VPS server để tên miền của bạn có thể kết nối tới. Ví dụ ở đây mình có địa chỉ IP của VPS là
+                <strong>111.111.111.111</strong>, mình có thể thêm vào file hosts những dòng sau:</p>
+
+                <pre class="pre-code-block">
+                    <code>
+127.0.0.1   localhost
+111.111.111.111 example.com
+111.111.111.111 test.com
+                    </code>
+                </pre>
+
+                <p>Khi đó, tất cả các yêu cầu tới example.com và test.com trên máy tính của mình sẽ được gửi tới các tên miền của mình tại
+                <strong>111.111.111.111</strong>.</p>
+
+                <p>Lưu lại và đóng file.</p>
+
+                <h3 class="section-heading">Bước 6 - Xem kết quả</h3>
+
+                <p>Bây giờ các bạn đã có các hosts ảo đã được cấu hình. Các bạn có thể test chúng bằng cách đi tới các tên miền trên trình duyệt của bạn:</p>
+
+                <code>http://example.com</code>
+
+                <p>Các bạn sẽ thấy một trang như sau:</p>
+
+                <code style="color:black !important"><html>
+                <head>
+                    <title>Welcome to Example.com!</title>
+                </head>
+                <body>
+                <h2>Success!  The example.com virtual host is working!</h2>
+                </body>
+                </html></code>
+
+                <p>Tương tự, nếu bạn đi tới trang thứ hai:</p>
+
+                <code>http://test.com</code>
+
+                <p>Các bạn sẽ thấy nội dung bạn tạo cho trang thứ hai:</p>
+
+                <code style="color:black !important"><html>
+                <head>
+                    <title>Welcome to Test.com!</title>
+                </head>
+                <body>
+                <h2>Success!  The test.com virtual host is working!</h2>
+                </body>
+                </html></code>
+
+                <p>Cả hai trang đều làm việc, các bạn đã cấu hình thành công hai hosts ảo trên cùng một server.</p>
+
+                <p>Nếu bạn cần một trang web thực sự thì hãy mua tên miền và trỏ tới VPS server.</p>
+
+                <h3 class="section-heading">Kết luận</h3>
+
+                <p>Không có điều gì giới hạn số lượng tên miền mà Apache có thể xử lí, vì vậy bạn có thể thêm thoải mái hosts ảo tùy vào sức mạnh mà server có thể tải được.</p>
+
+                <p>By <a href="https://www.digitalocean.com">Digitalocean</a></p>
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="#">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; HaiTT 2016</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="../../js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../../js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="../../js/clean-blog.min.js"></script>
+
+</body>
+
+</html>

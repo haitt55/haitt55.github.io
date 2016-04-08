@@ -12,17 +12,17 @@
     <title>Cài đặt host ảo</title>
 
     <!-- Github page CSS-->
-    <link href="../css/github-light.css" rel="stylesheet">
-    <link href="../css/stylesheet.css" rel="stylesheet">
+    <link href="../../css/github-light.css" rel="stylesheet">
+    <link href="../../css/stylesheet.css" rel="stylesheet">
 
     <!-- Bootstrap Core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../css/clean-blog.min.css" rel="stylesheet">
+    <link href="../../css/clean-blog.min.css" rel="stylesheet">
 
     <!-- My Style -->
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -51,20 +51,20 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Be successful!</a>
+            <a class="navbar-brand" href="../../index.html">Be successful!</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="../../index.html">Home</a>
                 </li>
                 <li>
-                    <a href="about.html">About</a>
+                    <a href="../../about.html">About</a>
                 </li>
                 <li>
-                    <a href="contact.html">Contact</a>
+                    <a href="../../contact.html">Contact</a>
                 </li>
             </ul>
         </div>
@@ -75,13 +75,13 @@
 
 <!-- Page Header -->
 <!-- Set your background image for this header on the line below. -->
-<header class="intro-header" style="background-image: url('../img/post-bg.jpg')">
+<header class="intro-header" style="background-image: url('../../img/post-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h2>Cách cài đặt Apache Virtual Hosts trên Ubuntu 14.04 LTS (tới 15.10)</h2>
-                    <span class="meta">Posted by <a href="#">HaiTT</a> on Apr 5, 2016</span>
+                    <h2>[Design Pattern] - Tìm hiểu Factory Method qua ví dụ cụ thể</h2>
+                    <span class="meta">Posted by <a href="#">HaiTT</a> on Apr 10, 2016</span>
                 </div>
             </div>
         </div>
@@ -96,13 +96,24 @@
 
                 <h3 class="section-heading">Giới thiệu</h3>
 
-                <p>Apache được sử dụng rộng rãi trên các máy chủ web trên thế giới. Có khoảng hơn 50% website hiện có trên internet đang sử dụng vì nó vô cùng mạnh mẽ và linh hoạt.</p>
+                <p>Factory pattern là một design pattern được sử dụng rất nhiều trong Java. Thuộc loại creatial pattern, và nó là pattern tốt nhất để tạo một object.</p>
 
-                <p>Apache có thể chia các chức năng và thành phần của nó thành các đơn vị riêng lẻ. Mỗi đơn vị này có thể tùy chỉnh và cấu hình độc lập.
-                Đơn vị cơ bản này mô tả một trang với tên miền riêng được gọi là một <strong>virtual host</strong></p>
+                <p>Trong Factory pattern, chúng ta tạo một object mà không để lộ logic tạo object với người dùng và tạo ra các đối tượng mới bằng cách sử dụng một interdace chung.</p>
 
-                <p>Quản trị viên có thể sử dụng một server để lưu trữ nhiều tên miền hay trang web của một giao diện duy nhất hay IP bằng cách sử dụng một cơ chế phù hợp.
-                Rất thích hợp cho ai muốn lưu trữ nhiều trang web trên một server duy nhất.</p>
+                <h3 class="section-heading">Mục đích</h3>
+
+                <ul>
+                    <li><p>Định nghĩa một interface cho việc tạo object, nhưng cho các lớp con quyết định class nào để cấp nhanh chóng.</p></li>
+                    <li><p>Định nghĩa một constructor "ảo".</p></li>
+                    <li><p>Toán tử new được coi là không tốt.</p></li>
+                </ul>
+
+                <h3 class="section-heading">Thực thi</h3>
+
+                <p>Chúng ta sẽ tạo một interface <strong>Shape</strong> và các class cụ thể thực thi interface <strong>Shape</strong>.
+                Một class <strong>ShapeFactory</strong>được định nghĩa ở bước tiếp thep.</p>
+
+                <p></p>
 
                 <p>Mỗi tên miền được cấu hình sẽ trỏ trực tiếp tới thư mục chứa thông tin của trang web tương ứng.
                 Chương trình xử lí này có thể mở rộng tùy ý dựa trên khả năng của server.</p>
@@ -398,13 +409,13 @@ CustomLog ${APACHE_LOG_DIR}/access.log combined
 </footer>
 
 <!-- jQuery -->
-<script src="../js/jquery.js"></script>
+<script src="../../js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="../js/bootstrap.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="../js/clean-blog.min.js"></script>
+<script src="../../js/clean-blog.min.js"></script>
 
 </body>
 
