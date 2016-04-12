@@ -22,3 +22,12 @@ code {
 pre code {
     font-size: 15px !important;
 }
+
+i {
+    font-style: italic;
+}
+
+.pretty-print {
+    padding-top: 20px;
+    padding-bottom: 0px;
+}

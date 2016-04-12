@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="cat-dat-host-ao-ubuntu-14.04">
+    <meta name="description" content="factory-method">
     <meta name="author" content="HaiTT">
 
     <title>Cài đặt host ảo</title>
@@ -14,6 +14,10 @@
     <!-- Github page CSS-->
     <link href="../../css/github-light.css" rel="stylesheet">
     <link href="../../css/stylesheet.css" rel="stylesheet">
+
+    <!-- Sysntax CSS -->
+    <link href="../../css/pygments.css" rel="stylesheet">
+    <link href="../../css/pygments14.css" rel="stylesheet">
 
     <!-- Bootstrap Core CSS -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +84,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h2>[Design Pattern] - Tìm hiểu Factory Method qua ví dụ cụ thể</h2>
+                    <h1>[Design Pattern] - Tìm hiểu Factory Method qua ví dụ cụ thể</h1>
                     <span class="meta">Posted by <a href="#">HaiTT</a> on Apr 10, 2016</span>
                 </div>
             </div>
@@ -96,9 +100,9 @@
 
                 <h3 class="section-heading">Giới thiệu</h3>
 
-                <p>Factory pattern là một design pattern được sử dụng rất nhiều trong Java. Thuộc loại creatial pattern, và nó là pattern tốt nhất để tạo một object.</p>
+                <p>Factory pattern là một design pattern được sử dụng rất nhiều trong thực tế. Nó thuộc loại creatial pattern, và là một trong những pattern tốt nhất trong việc tạo một object.</p>
 
-                <p>Trong Factory pattern, chúng ta tạo một object mà không để lộ logic tạo object với người dùng và tạo ra các đối tượng mới bằng cách sử dụng một interdace chung.</p>
+                <p>Trong Factory pattern, chúng ta tạo một object mà không để lộ logic tạo object với người dùng và tạo ra các đối tượng mới bằng cách sử dụng một interface chung.</p>
 
                 <h3 class="section-heading">Mục đích</h3>
 
@@ -111,259 +115,155 @@
                 <h3 class="section-heading">Thực thi</h3>
 
                 <p>Chúng ta sẽ tạo một interface <strong>Shape</strong> và các class cụ thể thực thi interface <strong>Shape</strong>.
-                Một class <strong>ShapeFactory</strong>được định nghĩa ở bước tiếp thep.</p>
+                Một class <strong>ShapeFactory</strong> được định nghĩa ở bước tiếp thep.</p>
+
+                <p>Ở đây, chúng ta sẽ sử dụng class <strong>ShapeFactory</strong> để lấy một đối tượng <strong>Shape</strong>.
+                Từ các thông tin (<i>CIRCLE / RECTANGLE / SQUARE</i>) được truyền qua ShapeFactory, chúng ta sẽ có được đối tượng cần sử dụng.</p>
+
+                <a href="#">
+                    <img class="img-responsive" src="../../img/factory_pattern_diagram.png" alt="">
+                </a>
+
+                <h3 class="section-heading">Bước 1</h3>
+
+                <p>Tạo interface Shape</p>
+
+                <p><i>Shape.php</i></p>
+
+                <div class="syntax">
+                    <pre class="pretty-print lang-php">
+<span class="k">interface</span> <span class="nc">Shape</span>
+<span class="p">{</span>
+    <span class="k">function</span> <span class="nf">draw</span><span class="p">();</span>
+<span class="p">}</span>
+                    </pre>
+                </div>
+
+                <h3 class="section-heading">Bước 2</h3>
+
+                <p>Tạo các class implements cùng một interface (Shape)</p>
+
+                <p><i>Circle.php</i></p>
+
+                <div class="syntax">
+                    <pre class="pretty-print lang-php">
+<span class="k">class</span> <span class="nc">Circle</span> <span class="k">implements</span> <span class="nx">Shape</span>
+<span class="p">{</span>
+    <span class="k">function</span> <span class="nf">draw</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s">"Inside Circle::draw() method.</span><span class="p">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+                    </pre>
+                </div>
+
+                <p><i>Square.php</i></p>
+
+                <div class="syntax">
+                    <pre class="pretty-print lang-php">
+<span class="k">class</span> <span class="nc">Square</span> <span class="k">implements</span> <span class="nx">Shape</span>
+<span class="p">{</span>
+    <span class="k">function</span> <span class="nf">draw</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s">"Inside Square::draw() method.</span><span class="p">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+                    </pre>
+                </div>
+
+                <p><i>Rectangle.php</i></p>
+
+                <div class="syntax">
+                    <pre class="pretty-print lang-php">
+<span class="k">class</span> <span class="nc">Rectangle</span> <span class="k">implements</span> <span class="nx">Shape</span>
+<span class="p">{</span>
+    <span class="k">function</span> <span class="nf">draw</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s">"Inside Rectangle::draw() method.</span><span class="p">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+                    </pre>
+                </div>
+
+                <h3 class="section-heading">Bước 3</h3>
+
+                <p>Tạo một Factory để sinh ra các đối tượng cụ thể từ thông tin truyền vào.</p>
+
+                <p><i>ShapeFactory.php</i></p>
+
+                <div class="syntax">
+                    <pre class="pretty-print lang-php">
+<span class="k">class</span> <span class="nc">ShapeFactory</span>
+<span class="p">{</span>
+    <span class="k">function</span> <span class="nf">getShape</span><span class="p">(</span><span class="nv">$shapeType</span> <span class="s">= ''</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="nv">$shapeType</span><span class="p">) {</span>
+            <span class="k">case</span> <span class="s">'CIRCLE'</span> <span class="p">:</span>
+                <span class="k">return new</span> <span class="vc">Circle()</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="s">'SQUARE'</span> <span class="p">:</span>
+                <span class="k">return new</span> <span class="vc">Square()</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="s">'RECTANGLE'</span> <span class="p">:</span>
+                <span class="k">return new</span> <span class="vc">Rectangle()</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="s">'Circle'</span> <span class="p">:</span>
+                <span class="k">return null</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+                    </pre>
+                </div>
+
+                <h3 class="section-heading">Bước 4</h3>
 
-                <p></p>
+                <p>Sử dụng một file test để lấy đối tượng cụ thể thông qua thông tin truyền qua.</p>
 
-                <p>Mỗi tên miền được cấu hình sẽ trỏ trực tiếp tới thư mục chứa thông tin của trang web tương ứng.
-                Chương trình xử lí này có thể mở rộng tùy ý dựa trên khả năng của server.</p>
+                <p><i>test.php</i></p>
 
-                <p>Ở đây, mình sẽ hướng dẫn các bạn cách cài đặt hosts ảo Apache trên Ubuntu 14.04 LTS (đến phiên bản 15.10).
-                Bạn sẽ biết cách cung cấp nội dung khác nhau dựa trên các yêu cầu truy cập khác nhau.</p>
+                <div class="syntax">
+                    <pre class="pretty-print lang-php">
+<span class="k">require_once</span> <span class="s">'ShapeFactory.php'</span><span class="p">;</span>
+<span class="k">require_once</span> <span class="s">'Shape.php.php'</span><span class="p">;</span>
+<span class="k">require_once</span> <span class="s">'Square.php'</span><span class="p">;</span>
+<span class="k">require_once</span> <span class="s">'Circle.php'</span><span class="p">;</span>
+<span class="k">require_once</span> <span class="s">'Rectangle.php'</span><span class="p">;</span>
 
-                <h3 class="section-heading">Điều kiện</h3>
+<span class="nv">$shapeFactory</span> <span class="p">=</span> <span class="k">new</span> <span class="vc">ShapeFactory()</span><span class="p">;</span>
 
-                <p>Hãy chắc chắn rằng Apache đã được cài đặt. Nếu chưa, bạn có thể cài đặt Apache trên server của bạn thông qua lệnh:</p>
+<span class="nv">$circle</span> = <span class="nv">$shapeFactory</span><span class="o">-></span><span class="na">getShape</span>(<span class="s">'CIRCLE'</span>);
+<span class="nv">$circle</span><span class="o">-></span><span class="na">draw</span>();
 
-                <code>sudo apt-get update</code><br>
-                <code>sudo apt-get install apache2</code>
+<span class="nv">$square</span> = <span class="nv">$shapeFactory</span><span class="o">-></span><span class="na">getShape</span>(<span class="s">'SQUARE'</span>);
+<span class="nv">$square</span><span class="o">-></span><span class="na">draw</span>();
 
-                <p>Mình sẽ tạo hai host ảo cho <strong>example.com</strong> và <strong>test.com</strong>.
-                    Bạn cũng có thể dùng bất cứ tên miền nào bạn thích.</p>
+<span class="nv">$rectangle</span> = <span class="nv">$shapeFactory</span><span class="o">-></span><span class="na">getShape</span>(<span class="s">'RECTANGLE'</span>);
+<span class="nv">$rectangle</span><span class="o">-></span><span class="na">draw</span>();
 
-                <p>Nếu bạn chưa sở hữu một tên miền chính thức nào thì có thể sử dụng tên miền giả.
-                    Tên miền giả cho phép bạn test trên chính máy tính của mình, tuy nhiên nó chỉ hiện hữu trên máy bạn mà thôi.</p>
+                    </pre>
+                </div>
 
-                <h3 class="section-heading">Bước 1 - Tạo cấu trúc thư mục</h3>
+                <h3 class="section-heading">Bước 5</h3>
 
-                <p>Đầu tiên chúng ta sẽ tạo một cấu trúc thư mục để lưu trữ dữ liệu của trang web. Tạo các thư mục con trong <strong>thư mục gốc</strong>
-                    <strong>/var/www</strong>(thư mục ở cấp độ cao nhất mà Apache trỏ tới để lấy nội dung). Các thư mục con này sẽ được sử dụng cho các host ảo mà chúng ta sẽ tạo.</p>
+                <p>Xác nhận kết quả.</p>
 
-                <p>Trong mỗi thư mục con này, chúng ta sẽ tạo một thư mục <strong>public_html</strong>. Thư mục này sẽ chứa các file thực sự.</p>
+                <p>Chúng ta có thể chạy file test.php trực tiếp trên command line:</p>
 
-                <p>Trong bài này, chúng ta sẽ tạo các thư mục tương ứng với <strong>example.com</strong> và <strong>test.com</strong> như sau:</p>
+                <code>php -f <i style="color: black">path</i>/test.php</code><br>
 
-                <code>sudo mkdir -p /var/www/<strong>example.com</strong>/public_html</code><br>
-                <code>sudo mkdir -p /var/www/<strong>test.com</strong>/public_html</code>
+                <p>Kết quả:</p>
 
-                <p>Sau đó, để chắc chắn rằng tất cả các file, thư mục trong thư mục web của đều có quyền đọc, chúng ta dùng lệnh:</p>
-
-                <code>sudo chmod -R 755 /var/www</code>
-
-                <h3 class="section-heading">Bước 2 - Tạo các trang thử nghiệm với mỗi host ảo</h3>
-
-                <p>Bây giờ chúng ta tạo một file <strong>index.html</strong> cho mỗi trang.</p>
-
-                <p>Với <strong>example.com</strong>, chúng ta có thể mở file <strong>index.html</strong> bằng cách gõ:</p>
-
-                <code>nano /var/www/example.com/public_html/index.html</code>
-
-                <p>Trong file này, tạo một nội dung HTML cơ bản biểu thị trang mà nó được kết nối tới. Ví dụ:</p>
-
-                <pre class="pre-code-block"><code>
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;title&gt;Welcome to Example.com!&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;h2&gt;Success!  The example.com virtual host is working!&lt;/h2&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-                </code></pre>
-
-                <p>Chúng ta có thể copy file này để sử dụng cho trang thứ 2 bằng cách gõ:</p>
-
-                <span class="code-block"><code>cp /var/www/example.com/public_html/index.html /var/www/test.com/public_html/index.html</code></span>
-
-                <p>Mở file vừa được copy và sửa lại một chút:</p>
-
-                <code>nano /var/www/test.com/public_html/index.html</code>
-
-                <pre class="pre-code-block"><code>
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;title&gt;Welcome to Test.com!&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;h2&gt;Success!  The test.com virtual host is working!&lt;/h2&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-                </code></pre>
-
-                <h3 class="section-heading">Bước 3 - Tạo các file cấu hình virtual host</h3>
-
-                <p>Các file cấu hình virtual host là các file xác định các cấu hình host ảo của chúng ta và quy định cách mà Apache phản hồi
-                với các yêu cầu tên miền khác nhau.</p>
-
-                <p>Apache có một file cấu hình mặc định là <strong>000.default.conf</strong>. Chúng ta sẽ copy file này để tạo một file cấu hình cho mỗi tên miền.</p>
-
-                <p>Chúng ta sẽ bắt đầu với một tên miền, cấu hình nó, sau đó sẽ làm tương tự với tên miền thứ hai. Ubuntu yêu cầu các file cấu hình phải có đuôi <strong>.conf</strong></p>
-
-                <h4 class="section-heading">Tạo file cấu hình đầu tiên</h4>
-
-                <p>Copy file cho domain đầu tiên:</p>
-
-                <span class="code-block"><code>sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/example.com.conf</code></span>
-
-                <p>Mở file vừa copy với quyền root:</p>
-
-                <code>sudo nano /etc/apache2/sites-available/example.com.conf</code>
-
-                <p>File này sẽ như sau (mình đã bỏ các dòng comment cho dễ đọc):</p>
-
-                <pre class="pre-code-block"><code>
-&lt;VirtualHost *:80&gt;
-    ServerAdmin webmaster@localhost
-    DocumentRoot /var/www/html
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-&lt;/VirtualHost&gt;
-                </code></pre>
-
-                <p>Chúng ta sẽ đặt lại các giá trị và thêm vào một số chỉ thị thêm. Phần host ảo này sẽ xử lí bất kì yêu cầu nào trên công 80 (cổng HTTP mặc định).</p>
-
-                <p>Đầu tiên, chúng ta cần đổi <strong>ServerAdmin</strong> thành email mà trang admin có thể nhận email thông qua nó.</p>
-
-                <code>ServerAdmin admin@example.com</code>
-
-                <p>Sau đó thêm hai chỉ thị. Đầu tiên là ServerName, đặt dựa theo tên domain mà host ảo kết nối tới. Thứ hai là <strong>ServerAlias</strong>,
-                định nghĩa tên miền dài hơn với <strong>www:</strong></p>
-
-                <code>ServerName example.com</code><br>
-                <code>ServerAlias www.example.com</code>
-
-                <p>Đặt thư mục gốc <strong>DocumentRoot</strong> trỏ tới thư mục mà chúng ta đã tạo cho tên miền này:</p>
-
-                <code>DocumentRoot /var/www/example.com/public_html</code>
-
-                <p>Cuối cùng, file cấu hình sẽ như sau:</p>
-
-                <pre class="pre-code-block"><code>
-&lt;VirtualHost *:80&gt;
-    ServerAdmin admin@example.com
-    ServerName example.com
-    ServerAlias www.example.com
-    DocumentRoot /var/www/example.com/public_html
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-&lt;/VirtualHost&gt;
-                </code></pre>
-
-                <p>Lưu lại và đóng file.</p>
-
-                <h4 class="section-heading">Tạo file cấu hình thứ 2</h4>
-
-                <p>Bây giờ chúng ta đã có một file cấu hình đã được tạo, ta chỉ cần tạo file cấu hình thứ 2 bằng việc copy file thứ nhất và chỉnh sửa lại nó.</p>
-
-                <p>Copy file đó:</p>
-
-                <span class="code-block"><code>sudo cp /etc/apache2/sites-available/example.com.conf /etc/apache2/sites-available/test.com.conf</code></span>
-
-                <p>Mở file vừa copy được với quyền root:</p>
-
-                <code>sudo nano /etc/apache2/sites-available/test.com.conf</code>
-
-                <p>Sau đó chỉnh sửa file này giống như file cấu hình trước đó. File này sẽ là:</p>
-
-                <pre class="pre-code-block"><code>
-&lt;VirtualHost *:80&gt;
-ServerAdmin admin@test.com
-ServerName test.com
-ServerAlias www.test.com
-DocumentRoot /var/www/test.com/public_html
-ErrorLog ${APACHE_LOG_DIR}/error.log
-CustomLog ${APACHE_LOG_DIR}/access.log combined
-&lt;/VirtualHost&gt;
-                </code></pre>
-
-                <p>Lưu lại và đóng file.</p>
-
-                <h3 class="section-heading">Bước 4 - Kích hoạt file cấu hình</h3>
-
-                <p>Sau khi đã tạo file cấu hình cho các host ảo, chúng ta cần kích hoạt chúng. Apache có sẵn một số công cụ cho phép chúng ta làm việc này.</p>
-
-                <p>Chúng ta có thể sử dụng <strong>a2ensite</strong> để kích hoạt từng trang như sau:</p>
-
-                <code>sudo a2ensite example.com.conf</code><br>
-                <code>sudo a2ensite test.com.conf</code>
-
-                <p>Sau đó chúng ta cần khởi động lại Apache để nhận các thay đổi này:</p>
-
-                <code>sudo service apache2 restart</code>
-
-                <h3 class="section-heading">Bước 5 - Thiết lập file hosts</h3>
-
-                <p>Nếu các bạn chưa bao giờ sử dụng một tên miền thực sự thì thay vào đó bạn phải dùng các domain giả.
-                    Ít nhất thì bạn có thể kiểm tra sự hoạt động của các host ảo bằng cách tạm thời sử đổi file <strong>hosts</strong> trên chính máy tính của mình.</p>
-
-                <p>Việc này sẽ ngăn chặn bất kì yêu cầu nào tới tên miền mà bạn đã cấu hình và trỏ chúng tới VPS server của bạn,
-                giống cách một hệ thống DNS làm việc nếu bạn có tên miền thực sự. Việc này chỉ hữu dụng cho mục đích test mà thôi.</p>
-
-                <p>Hãy chắc chắn rằng bước này chỉ được thực hiện trên máy tính của bạn chứ không phải trên VPS server.</p>
-
-                <p>Nếu máy tính của bạn sử dụng Mac hoặc Linux bạn có thể sửa file hosts bằng cách:</p>
-
-                <code>sudo nano /etc/hosts</code>
-
-                <p>nếu bạn sử dụng windows, bạn có thể <a href="https://support.microsoft.com/en-us/kb/923947">tìm cách sửa file host ở đây</a></p>
-
-                <p>Bạn cũng cần địa chỉ IP của VPS server để tên miền của bạn có thể kết nối tới. Ví dụ ở đây mình có địa chỉ IP của VPS là
-                <strong>111.111.111.111</strong>, mình có thể thêm vào file hosts những dòng sau:</p>
-
-                <pre class="pre-code-block">
-                    <code>
-127.0.0.1   localhost
-111.111.111.111 example.com
-111.111.111.111 test.com
-                    </code>
-                </pre>
-
-                <p>Khi đó, tất cả các yêu cầu tới example.com và test.com trên máy tính của mình sẽ được gửi tới các tên miền của mình tại
-                <strong>111.111.111.111</strong>.</p>
-
-                <p>Lưu lại và đóng file.</p>
-
-                <h3 class="section-heading">Bước 6 - Xem kết quả</h3>
-
-                <p>Bây giờ các bạn đã có các hosts ảo đã được cấu hình. Các bạn có thể test chúng bằng cách đi tới các tên miền trên trình duyệt của bạn:</p>
-
-                <code>http://example.com</code>
-
-                <p>Các bạn sẽ thấy một trang như sau:</p>
-
-                <code style="color:black !important"><html>
-                <head>
-                    <title>Welcome to Example.com!</title>
-                </head>
-                <body>
-                <h2>Success!  The example.com virtual host is working!</h2>
-                </body>
-                </html></code>
-
-                <p>Tương tự, nếu bạn đi tới trang thứ hai:</p>
-
-                <code>http://test.com</code>
-
-                <p>Các bạn sẽ thấy nội dung bạn tạo cho trang thứ hai:</p>
-
-                <code style="color:black !important"><html>
-                <head>
-                    <title>Welcome to Test.com!</title>
-                </head>
-                <body>
-                <h2>Success!  The test.com virtual host is working!</h2>
-                </body>
-                </html></code>
-
-                <p>Cả hai trang đều làm việc, các bạn đã cấu hình thành công hai hosts ảo trên cùng một server.</p>
-
-                <p>Nếu bạn cần một trang web thực sự thì hãy mua tên miền và trỏ tới VPS server.</p>
+                <code>Inside Circle::draw() method.</code><br>
+                <code>Inside Square::draw() method.</code><br>
+                <code>Inside Rectangle::draw() method.</code>
 
                 <h3 class="section-heading">Kết luận</h3>
 
-                <p>Không có điều gì giới hạn số lượng tên miền mà Apache có thể xử lí, vì vậy bạn có thể thêm thoải mái hosts ảo tùy vào sức mạnh mà server có thể tải được.</p>
+                <p>Chúng ta thấy rằng một class Factory cũng giống như một nhà máy sản xuất đối tượng vậy.
+                    Nói chung, <strong>factory method</strong> thường được áp dụng cho những phương thức mà nhiệm vụ chính của nó là tạo ra đối tượng</p>
 
-                <p>By <a href="https://www.digitalocean.com">Digitalocean</a></p>
+                <p>By <a href="../../about.html">HaiTT</a></p>
             </div>
         </div>
     </div>
